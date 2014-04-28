@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        html, body, button {
+            height: 100%;
+            min-height: 100%;
+            width: 100%;
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <button id="b">TAP ME</button>
+    
+    <script src="dist/tap.js"></script>
+    <script type="text/javascript">
+        var counter = [0,0];
+        document.getElementById('b').addEventListener('tap', function () {
+            console.log('tap', counter[0]++);
+        });  
+
+        document.getElementById('b').addEventListener('click', function () {
+            console.log('click', counter[1]++);
+        }); 
+    </script>
+</body>
+</html>
