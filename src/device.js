@@ -33,7 +33,6 @@ Tap.device = {
 
         while (i--) {
             if (Tap.utils.hasEvent(eventsMatrix[i]['start'])) {
-                console.log(Tap.utils.getEventPrefix(eventsMatrix[i]['start']), eventsMatrix[i]['start']);
                 Tap.device.eventsMatrix = eventsMatrix[i];
                 Tap.device.prefix = Tap.utils.getEventPrefix(eventsMatrix[i]['start']);
 
