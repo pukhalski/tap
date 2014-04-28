@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "homepage": "http://pukhalski.github.io/tap.js/",
     "authors": [
-        "Ilya Pukhalski <swedenxpower@gmail.com>"
+        "Ilya Pukhalski <swedenxpower@gmail.com>",
+        "Mikhail Larchanka <larchanka@me.com>"
     ],
     "description": "Library to handle various user interactions (click, touch, pointer) with a single event 'tap'",
     "main": "dist/tap.js",
