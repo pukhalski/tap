@@ -20,9 +20,9 @@ Tap.trigger = function(element) {
     }
 };
 
-
-Tap.init = (function() {
+Tap.init = function() {
+    Tap.device.findEventsMatrix();
     document.body.addEventListener(Tap.device.eventsMatrix['end'], function(e) {
         Tap.trigger(e.target);
     }, false);
-}());
+};

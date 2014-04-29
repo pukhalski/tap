@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         concat: {
             options: {
                 banner: '(function () {\n\nvar Tap = {};\n',
-                footer: '\nwindow.Tap = Tap;\n\n})();'
+                footer: '\nwindow.Tap = Tap;\nTap.init();\n\n})();'
             },
             dist: {
                 src: ['src/utils.js', 'src/device.js', 'src/tap.js'],

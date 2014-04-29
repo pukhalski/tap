@@ -26,24 +26,18 @@ var eventsMatrix = [
 
 Tap.device = {
     eventsMatrix: eventsMatrix[0],
-    prefix: '',
-
-    findEventsMatrix: function() {
-        var i = eventsMatrix.length;
-
-        while (i--) {
-            if (Tap.utils.hasEvent(eventsMatrix[i]['start'])) {
-                Tap.device.eventsMatrix = eventsMatrix[i];
-                Tap.device.prefix = Tap.utils.getEventPrefix(eventsMatrix[i]['start']);
-
-                break;
-            }
-        }
-    }
-
-
+    prefix: ''
 };
 
-Tap.device.init = (function() {
-    Tap.device.findEventsMatrix();
-}());
+Tap.findEventsMatrix = function() {
+    var i = eventsMatrix.length;
+
+    while (i--) {
+        if (Tap.utils.hasEvent(eventsMatrix[i]['start'])) {
+            Tap.device.eventsMatrix = eventsMatrix[i];
+            Tap.device.prefix = Tap.utils.getEventPrefix(eventsMatrix[i]['start']);
+
+            break;
+        }
+    }
+};
