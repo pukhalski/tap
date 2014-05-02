@@ -21,6 +21,14 @@ var eventsMatrix = [
         move: "pointermove",
         end: "pointerup",
         cancel: "pointercancel"
+    },
+
+    // Events for IE10 :(
+    {
+        start: "PointerDown",
+        move: "PointerMove",
+        end: "PointerUp",
+        cancel: "PointerCancel"
     }
 ];
 

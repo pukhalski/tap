@@ -1,5 +1,5 @@
 Tap.utils = {
-    prefixes: ' Webkit Moz O MS'.split(' ')
+    prefixes: ' Webkit Moz O ms MS'.split(' ')
 };
 
 Tap.utils.getEventPrefix = function(eventName) {
