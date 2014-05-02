@@ -1,51 +1,73 @@
 var eventsMatrix = [
     // Events for desktop browser, old ios, old android
     {
-        start: "mousedown",
-        move: "mousemove",
-        end: "mouseup",
-        cancel: "mouseup"
+        test: function() {
+            return true;
+        },
+        events: {
+            start: "mousedown",
+            move: "mousemove",
+            end: "mouseup",
+            cancel: "mouseup"
+        }
     },
 
     // Events for touchable devices
     {
-        start: "touchstart",
-        move: "touchmove",
-        end: "touchend",
-        cancel: "touchcancel"
-    },
+        test: function() {
+            if ('propertyIsEnumerable' in window || 'hasOwnProperty' in window.document) {
+                return (window.propertyIsEnumerable('ontouchstart') || window.document.hasOwnProperty('ontouchstart'));
+            }
 
-    // Events for modern device agnostic web
-    {
-        start: "pointerdown",
-        move: "pointermove",
-        end: "pointerup",
-        cancel: "pointercancel"
+            return false;
+        },
+        events: {
+            start: "touchstart",
+            move: "touchmove",
+            end: "touchend",
+            cancel: "touchcancel"
+        }
     },
 
     // Events for IE10 :(
     {
-        start: "PointerDown",
-        move: "PointerMove",
-        end: "PointerUp",
-        cancel: "PointerCancel"
+        test: function() {
+            return window.navigator.msPointerEnabled;
+        },
+        events: {
+            start: "MSPointerDown",
+            move: "MSPointerMove",
+            end: "MSPointerUp",
+            cancel: "MSPointerCancel"
+        }
+    },
+
+    // Events for modern device agnostic web
+    {
+        test: function() {
+            window.navigator.pointerEnabled;
+        },
+        events: {
+            start: "pointerdown",
+            move: "pointermove",
+            end: "pointerup",
+            cancel: "pointercancel"
+        }
     }
 ];
 
 Tap.device = {
-    eventsMatrix: eventsMatrix[0],
-    prefix: ''
+    eventsMatrix: null
 };
 
 Tap.device.findEventsMatrix = function() {
     var i = eventsMatrix.length;
 
     while (i--) {
-        if (Tap.utils.getEventPrefix(eventsMatrix[i]['start']) !== false) {
-            Tap.device.eventsMatrix = eventsMatrix[i];
-            Tap.device.prefix = Tap.utils.getEventPrefix(eventsMatrix[i]['start']);
-
-            break;
+        if (eventsMatrix[i].test) {
+            return eventsMatrix[i];
         }
     }
+
+    return eventsMatrix[0];
 };

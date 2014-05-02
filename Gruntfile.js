@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 footer: '\nwindow.Tap = Tap;\nTap.init();\n\n})();'
             },
             dist: {
-                src: ['src/utils.js', 'src/device.js', 'src/tap.js'],
+                src: ['src/device.js', 'src/tap.js'],
                 dest: 'dist/tap.js',
             },
         },
