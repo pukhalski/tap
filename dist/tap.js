@@ -2,7 +2,7 @@
 
 var Tap = {};
 Tap.utils = {
-    prefixes: ' Webkit Moz O MS'.split(' ')
+    prefixes: ' Webkit Moz O ms MS'.split(' ')
 };
 
 Tap.utils.getEventPrefix = function(eventName) {
@@ -77,6 +77,14 @@ var eventsMatrix = [
         move: "pointermove",
         end: "pointerup",
         cancel: "pointercancel"
+    },
+
+    // Events for IE10 :(
+    {
+        start: "PointerDown",
+        move: "PointerMove",
+        end: "PointerUp",
+        cancel: "PointerCancel"
     }
 ];
 
