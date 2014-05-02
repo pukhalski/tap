@@ -2,13 +2,12 @@
 
 var Tap = {};
 Tap.utils = {
-    prefixes: ' -webkit- -moz- -o- -ms-'.split(' ')
+    prefixes: ' Webkit Moz O MS'.split(' ')
 };
 
 Tap.utils.getEventPrefix = function(eventName) {
     var prefix = false,
         i = this.prefixes.length;
-
 
     while (i-- && !prefix) {
         if (this.hasEvent(this.prefixes[i] + eventName)) {
@@ -90,7 +89,7 @@ Tap.findEventsMatrix = function() {
     var i = eventsMatrix.length;
 
     while (i--) {
-        if (Tap.utils.hasEvent(eventsMatrix[i]['start'])) {
+        if (Tap.utils.getEventPrefix(eventsMatrix[i]['start']) !== false) {
             Tap.device.eventsMatrix = eventsMatrix[i];
             Tap.device.prefix = Tap.utils.getEventPrefix(eventsMatrix[i]['start']);
 
