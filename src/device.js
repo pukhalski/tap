@@ -45,7 +45,7 @@ var eventsMatrix = [
     // Events for modern device agnostic web
     {
         test: function() {
-            window.navigator.pointerEnabled;
+            return window.navigator.pointerEnabled;
         },
         events: {
             start: "pointerdown",
@@ -64,7 +64,7 @@ Tap.device.findEventsMatrix = function() {
     var i = eventsMatrix.length;
 
     while (i--) {
-        if (eventsMatrix[i].test) {
+        if (eventsMatrix[i].test()) {
             return eventsMatrix[i];
         }
     }

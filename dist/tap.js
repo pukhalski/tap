@@ -48,7 +48,7 @@ var eventsMatrix = [
     // Events for modern device agnostic web
     {
         test: function() {
-            window.navigator.pointerEnabled;
+            return window.navigator.pointerEnabled;
         },
         events: {
             start: "pointerdown",
@@ -67,7 +67,7 @@ Tap.device.findEventsMatrix = function() {
     var i = eventsMatrix.length;
 
     while (i--) {
-        if (eventsMatrix[i].test) {
+        if (eventsMatrix[i].test()) {
             return eventsMatrix[i];
         }
     }
@@ -98,7 +98,7 @@ Tap.trigger = function(element) {
 
 Tap.init = function() {
     Tap.device.eventsMatrix = Tap.device.findEventsMatrix();
-    document.body.addEventListener(Tap.device.eventsMatrix['end'], function(e) {
+    document.body.addEventListener(Tap.device.eventsMatrix['events']['end'], function(e) {
         Tap.trigger(e.target);
     }, false);
 };

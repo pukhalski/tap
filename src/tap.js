@@ -22,7 +22,7 @@ Tap.trigger = function(element) {
 
 Tap.init = function() {
     Tap.device.eventsMatrix = Tap.device.findEventsMatrix();
-    document.body.addEventListener(Tap.device.eventsMatrix['end'], function(e) {
+    document.body.addEventListener(Tap.device.eventsMatrix['events']['end'], function(e) {
         Tap.trigger(e.target);
     }, false);
 };
