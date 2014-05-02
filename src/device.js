@@ -29,7 +29,7 @@ Tap.device = {
     prefix: ''
 };
 
-Tap.findEventsMatrix = function() {
+Tap.device.findEventsMatrix = function() {
     var i = eventsMatrix.length;
 
     while (i--) {
