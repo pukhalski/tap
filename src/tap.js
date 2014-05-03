@@ -27,7 +27,3 @@ Tap.init = function() {
         Tap.trigger.apply(Tap, arguments);
     }, false);
 };
-
-window.onload = function() {
-    Tap.init();
-};
