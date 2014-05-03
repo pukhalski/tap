@@ -1,7 +1,8 @@
 var _eventName = 'tap';
 
-Tap.trigger = function(element) {
-    var event;
+Tap.trigger = function(e) {
+    var event = e,
+        element = e.target;
 
     if (document.createEvent) {
         event = document.createEvent("HTMLEvents");
@@ -22,7 +23,7 @@ Tap.trigger = function(element) {
 
 Tap.init = function() {
     Tap.device.eventsMatrix = Tap.device.findEventsMatrix();
-    document.body.addEventListener(Tap.device.eventsMatrix['events']['end'], function(e) {
-        Tap.trigger(e.target);
+    document.body.addEventListener(Tap.device.eventsMatrix['events']['end'], function() {
+        Tap.trigger.apply(Tap, arguments);
     }, false);
 };

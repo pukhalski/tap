@@ -18,8 +18,8 @@
     <script src="dist/tap.js"></script>
     <script type="text/javascript">
         var counter = [0,0];
-        document.getElementById('b').addEventListener('tap', function () {
-            console.log('tap', counter[0]++);
+        document.getElementById('b').addEventListener('tap', function (e) {
+            console.log('tap', counter[0]++, e, e.preventDefault);
         });  
 
         document.getElementById('b').addEventListener('click', function () {
