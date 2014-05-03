@@ -103,7 +103,10 @@ Tap.init = function() {
         Tap.trigger.apply(Tap, arguments);
     }, false);
 };
+
+window.onload = function() {
+    Tap.init();
+};
 window.Tap = Tap;
-Tap.init();
 
 })();
