@@ -1,5 +1,7 @@
 # TAP.JS 
 
+![Version 1.0.0](http://img.shields.io/badge/version-1.0.0-green.svg?style=flat)
+
 1Kb library to handle user interactions such as mouse, touch and pointer events with one unified event `tap`. 
 
 No need to detect what kind of events are supported, no need to write a lot of code, just handle user interactions in the intuitive way.
