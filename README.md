@@ -14,7 +14,7 @@ If you are using bower it is easy to install `tap`:
 bower install tap
 ```
 
-In other case you can simply [download the library](http://raw.github.com/pukhalski/tap.js/dist/tap.min.js).
+In other case you can simply [download the library](http://raw.github.com/pukhalski/tap/dist/tap.min.js).
 
 Include it to your html file (it does not matter where — in `<head>` or not):
 ```html
