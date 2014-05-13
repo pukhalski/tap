@@ -26,7 +26,7 @@ Include it to your html file (it does not matter where — in `<head>` or not):
 Use tap in the way you already know:
 
 ```
-  document.getElementById('tappable-element').addEventListener('tap', function (e) {
+  document.getElementById('any-element').addEventListener('tap', function (e) {
     // All the magic happens here
   });
 ```
@@ -34,30 +34,45 @@ Use tap in the way you already know:
 ### With jQuery
 
 ```
-  $('#tappable-element').on('tap', function (e) {
-    // All the magic happens here
-  });
+$('#any-element').on('tap', function (e) {
+  // All the magic happens here
+});
 ```
 
 ### With Zepto
 
 ```
-  $('#tappable-element').on('tap', function (e) {
-    // All the magic happens here
-  });
+$('#any-element').on('tap', function (e) {
+  // All the magic happens here
+});
 ```
 
 ### With Dojo
 
+```
+var myButton = dojo.byId('any-element');
+dojo.connect(myButton, 'tap', function(e){
+    // All the magic happens here
+});
+```
+
 ### With YUI
 
 ```
-  Y.one('#tappable-element').on('tap', function (e) {
+YUI().use('event', 'node', function (Y) {
+  Y.one('#any-element').on('tap', function(e) {
     // All the magic happens here
   });
+});
 ```
 
 ### With ExtJS
+
+```
+Ext.get('any-element').on('tap', function (e) {
+  // All the magic happens here
+});
+```
 
 ## Browser Support
 
