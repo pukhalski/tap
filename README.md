@@ -87,7 +87,7 @@ Tap was tested on the wide range of devices:
 * Window 8.1 (Acer S7, Nokia Lumia 825)
 * Window Phone 7.8 (Nokia Lumia 800)
 
-and browsers
+And browsers:
 
 * Android Browser 2+
 * BlackBerry Browser 6+
