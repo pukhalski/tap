@@ -78,14 +78,16 @@ Ext.get('any-element').on('tap', function (e) {
 
 Tap was tested on the wide range of devices:
 
-* Windows 7.5 (HTC T9295)
-* iOS 7.1.1 (iPhone 4-5s)
-* Android 2.3.3 (HTC Inspire 4G)
-* Android 3 (Motorola Xoom)
-* Android 4.4 (Nexus 4, Nexus 5)
-* BlackBerry OS 6.0 (BlackBerry Bold 9800)
-* Window 8.1 (Acer S7, Nokia Lumia 825)
-* Window Phone 7.8 (Nokia Lumia 800)
+* HTC T9295
+* iPhone 4, 5s
+* HTC Inspire 4G
+* Motorola Xoom
+* Nexus 4
+* Nexus 5
+* BlackBerry Bold 9800
+* Acer S7
+* Nokia Lumia 825
+* Nokia Lumia 800
 
 And browsers:
 
@@ -94,12 +96,14 @@ And browsers:
 * Chrome 31+
 * Firefox for Android
 * Firefox 24+
-* IE 10+
+* IE 8+
 * Mobile Chrome
 * Mobile Safari 5+
 * Opera 12+
 * Opera Mini
-* Safari 7+
+* Safari 5+
+
+It doesn't mean that all other platforms and browsers (or older versions of them) are not supported. 
 
 ## LICENSE
 
