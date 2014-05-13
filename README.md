@@ -80,10 +80,6 @@ Tap was tested on the wide range of devices:
 
 - 
 
-## Known issues
-
-The one most important well-known issue is that you cannot prevent propaganation/bubbling of `click` (or any other) event using `tap` event handler.
-
 ## LICENSE
 
 Tap is distributed under MIT license. Enjoy!
