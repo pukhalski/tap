@@ -17,7 +17,7 @@ bower install tap
 In other case you can simply [download the library](http://raw.github.com/pukhalski/tap.js/dist/tap.min.js).
 
 Include it to your html file (it does not matter where — in `<head>` or not):
-```
+```html
 <script src="bower_components/tap/dist/tap.min.js"></script>
 ```
 
@@ -25,7 +25,7 @@ Include it to your html file (it does not matter where — in `<head>` or not):
 
 Use tap in the way you already know:
 
-```
+```javascript
   document.getElementById('any-element').addEventListener('tap', function (e) {
     // All the magic happens here
   });
@@ -33,7 +33,7 @@ Use tap in the way you already know:
 
 ### With jQuery
 
-```
+```javascript
 $('#any-element').on('tap', function (e) {
   // All the magic happens here
 });
@@ -41,7 +41,7 @@ $('#any-element').on('tap', function (e) {
 
 ### With Zepto
 
-```
+```javascript
 $('#any-element').on('tap', function (e) {
   // All the magic happens here
 });
@@ -49,7 +49,7 @@ $('#any-element').on('tap', function (e) {
 
 ### With Dojo
 
-```
+```javascript
 var myButton = dojo.byId('any-element');
 dojo.connect(myButton, 'tap', function(e){
     // All the magic happens here
@@ -58,7 +58,7 @@ dojo.connect(myButton, 'tap', function(e){
 
 ### With YUI
 
-```
+```javascript
 YUI().use('event', 'node', function (Y) {
   Y.one('#any-element').on('tap', function(e) {
     // All the magic happens here
@@ -68,7 +68,7 @@ YUI().use('event', 'node', function (Y) {
 
 ### With ExtJS
 
-```
+```javascript
 Ext.get('any-element').on('tap', function (e) {
   // All the magic happens here
 });
