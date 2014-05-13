@@ -15,6 +15,9 @@ module.exports = function(grunt) {
         },
         uglify: {
             my_target: {
+                options: {
+                    banner: '/*\n  Handcrafted with love by Ilya Pukhalski (@pukhalski) and Mikhail Larchanka (@ashorror)\n*/\n'
+                },
                 files: {
                     'dist/tap.min.js': ['dist/tap.js']
                 }
