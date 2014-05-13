@@ -1,41 +1,41 @@
 # TAP.JS 
 
-1Kb library to handle user interactions such as mouse, touch and pointer events with one unified event `tap`. 
+`Tap` is a Javascript library for easy unified handling of user interactions such as mouse, touch and pointer events.
 
-No need to detect what kind of events are supported, no need to write a lot of code, just handle user interactions in the intuitive way.
-
-It is needed because the majority browsers has ~300ms delay between touch/pointer events and click. Every milisecond does really matter!  
+* No need to detect what kind of events are supported, `Tap` handles this for you
+* Small distibution size of 1Kb
+* Use fastest event types supported (majority of browsers has ~300ms delay between touch/pointer events and click). Every milisecond does really matter!  
 
 ## Installation
 
-If you are using bower it is easy to install `tap`:
+If you are using Bower:
 
 ```
 bower install tap
 ```
 
-In other case you can simply [download the library](http://raw.github.com/pukhalski/tap/dist/tap.min.js).
+Otherwise just [download the library](http://raw.github.com/pukhalski/tap/dist/tap.min.js).
 
-Include it to your html file (it does not matter where — in `<head>` or not):
+Include it anywhere in your html file (it does not matter where — in `<head>` or not):
 ```html
 <script src="bower_components/tap/dist/tap.min.js"></script>
 ```
 
 ## Usage
 
-Use tap in the way you already know:
+Using `Tap` is super easy. Just handle the 'tap' event in a way you are familiar with:
 
 ```javascript
-  document.getElementById('any-element').addEventListener('tap', function (e) {
+document.getElementById('any-element').addEventListener('tap', function (e) {
     // All the magic happens here
-  });
+});
 ```
 
 ### With jQuery
 
 ```javascript
 $('#any-element').on('tap', function (e) {
-  // All the magic happens here
+    // All the magic happens here
 });
 ```
 
@@ -43,7 +43,7 @@ $('#any-element').on('tap', function (e) {
 
 ```javascript
 $('#any-element').on('tap', function (e) {
-  // All the magic happens here
+    // All the magic happens here
 });
 ```
 
@@ -60,9 +60,9 @@ dojo.connect(myButton, 'tap', function(e){
 
 ```javascript
 YUI().use('event', 'node', function (Y) {
-  Y.one('#any-element').on('tap', function(e) {
-    // All the magic happens here
-  });
+    Y.one('#any-element').on('tap', function(e) {
+        // All the magic happens here
+    });
 });
 ```
 
@@ -70,7 +70,7 @@ YUI().use('event', 'node', function (Y) {
 
 ```javascript
 Ext.get('any-element').on('tap', function (e) {
-  // All the magic happens here
+    // All the magic happens here
 });
 ```
 
