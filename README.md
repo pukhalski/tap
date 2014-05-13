@@ -101,8 +101,6 @@ and browsers
 * Opera Mini
 * Safari 7+
 
-- 
-
 ## LICENSE
 
 Tap is distributed under MIT license. Enjoy!
