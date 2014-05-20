@@ -103,9 +103,14 @@ Tap.init = function() {
         Tap.trigger.apply(Tap, arguments);
     }, false);
 };
-window.onload = function() {
-    Tap.init();
-};
-window.Tap = Tap;
+
+
+if (window.addEventListener) {
+    window.addEventListener('load', Tap.init, false);
+} else if (element.attachEvent) {
+    window.attachEvent('onload', Tap.init)
+} else {
+    window['onload'] = Tap.init;
+}
 
 })();
