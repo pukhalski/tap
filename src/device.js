@@ -56,6 +56,24 @@ var eventsMatrix = [
     }
 ];
 
+var eventsCoordinates = {
+    start: [0, 0],
+    move: [0, 0],
+    offset: [0, 0],
+    maxOffset: 10
+};
+
+var attachEvent = function(evt, callback, el) {
+    el = el || window;
+    if (el.addEventListener) {
+        el.addEventListener(evt, callback, false);
+    } else if (element.attachEvent) {
+        el.attachEvent('on' + evt, callback)
+    } else {
+        el['on' + evt] = callback;
+    }
+};
+
 Tap.device = {
     eventsMatrix: null
 };
