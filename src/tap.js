@@ -21,18 +21,46 @@ Tap.trigger = function(e) {
     }
 };
 
+Tap.handlers = function() {
+    return {
+        start: function(e) {
+            var _event = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[0] : e;
+
+            eventsCoordinates.start = eventsCoordinates.move = [
+                _event.pageX,
+                _event.pageY
+            ];
+            eventsCoordinates.offset = [0, 0];
+        },
+
+        move: function(e) {
+
+            var _event = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[0] : e;
+
+            eventsCoordinates.move = [
+                _event.pageX,
+                _event.pageY
+            ];
+            eventsCoordinates.offset = [
+                Math.abs(eventsCoordinates.move[0] - eventsCoordinates.start[0]),
+                Math.abs(eventsCoordinates.move[1] - eventsCoordinates.start[1]),
+            ];
+        },
+
+        end: function() {
+
+            if (eventsCoordinates.offset[0] <= eventsCoordinates.maxOffset && eventsCoordinates.offset[1] <= eventsCoordinates.maxOffset)
+                Tap.trigger.apply(Tap, arguments);
+        }
+    };
+}();
+
 Tap.init = function() {
     Tap.device.eventsMatrix = Tap.device.findEventsMatrix();
-    document.body.addEventListener(Tap.device.eventsMatrix['events']['end'], function() {
-        Tap.trigger.apply(Tap, arguments);
-    }, false);
+
+    attachEvent(Tap.device.eventsMatrix['events']['start'], Tap.handlers["start"], document.body);
+    attachEvent(Tap.device.eventsMatrix['events']['move'], Tap.handlers["move"], document.body);
+    attachEvent(Tap.device.eventsMatrix['events']['end'], Tap.handlers["end"], document.body);
 };
 
-
-if (window.addEventListener) {
-    window.addEventListener('load', Tap.init, false);
-} else if (element.attachEvent) {
-    window.attachEvent('onload', Tap.init)
-} else {
-    window['onload'] = Tap.init;
-}
+attachEvent('load', Tap.init);
