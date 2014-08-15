@@ -1,66 +1,126 @@
-var _eventName = 'tap';
+(function( window ) {
 
-Tap.trigger = function(e) {
-    var event = e,
-        element = e.target;
+    var
+        attachEvent, attachDeviceEvent, init, eventsMatrix, handlers, fireEvent, Tap, createEvent, deviceEvents,
 
-    if (document.createEvent) {
-        event = document.createEvent("HTMLEvents");
-        event.initEvent(_eventName, true, true);
-    } else {
-        event = document.createEventObject();
-        event.eventType = _eventName;
-    }
+        document = window.document,
+        coords = {};
 
-    event.eventName = _eventName;
+    attachEvent = function( element, eventName, callback ) {
+        if ( element.addEventListener ) {
+            element.addEventListener( eventName, callback, false );
 
-    if (document.createEvent) {
-        element.dispatchEvent(event);
-    } else {
-        element.fireEvent("on" + event.eventType, event);
-    }
-};
+        } else if ( element.attachEvent ) {
+            element.attachEvent( 'on' + eventName, callback );
 
-Tap.handlers = function() {
-    return {
-        start: function(e) {
-            var _event = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[0] : e;
+        } else {
+            element[ 'on' + eventName ] = callback;
+        }
+    };
 
-            eventsCoordinates.start = eventsCoordinates.move = [
-                _event.pageX,
-                _event.pageY
-            ];
-            eventsCoordinates.offset = [0, 0];
+    attachDeviceEvent = function( eventName ) {
+        attachEvent( document.body, deviceEvents[ eventName ], handlers[ eventName ] );
+    };
+
+    eventsMatrix = [{
+        // Touchable devices
+        test: ( 'propertyIsEnumerable' in window || 'hasOwnProperty' in document ) && ( window.propertyIsEnumerable( 'ontouchstart' ) || document.hasOwnProperty( 'ontouchstart') ),
+        events: {
+            start: 'touchstart',
+            move: 'touchmove',
+            end: 'touchend'
+        }
+    }, {
+        // IE10
+        test: window.navigator.msPointerEnabled,
+        events: {
+            start: 'MSPointerDown',
+            move: 'MSPointerMove',
+            end: 'MSPointerUp'
+        }
+    }, {
+        // Modern device agnostic web
+        test: window.navigator.pointerEnabled,
+        events: {
+            start: 'pointerdown',
+            move: 'pointermove',
+            end: 'pointerup'
+        }
+    }];
+
+    createEvent = function( name ) {
+        var evnt;
+
+        if ( document.createEvent ) {
+            evnt = document.createEvent( 'HTMLEvents' );
+            evnt.initEvent( name, true, true );
+
+        } else {
+            evnt = document.createEventObject();
+            evnt.eventType = name;
+        }
+
+        evnt.eventName = name;
+
+        return evnt;
+    };
+
+    fireEvent = function( e ) {
+        return document.createEvent ? e.target.dispatchEvent( Tap ) : e.target.fireEvent( 'on' + e.eventType, e );
+    };
+
+    handlers = {
+        start: function( e ) {
+            e = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
+
+            coords.start = [ e.pageX, e.pageY ];
+            coords.offset = [ 0, 0 ];
         },
 
-        move: function(e) {
+        move: function( e ) {
+            e = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
 
-            var _event = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[0] : e;
+            coords.move = [ e.pageX, e.pageY ];
 
-            eventsCoordinates.move = [
-                _event.pageX,
-                _event.pageY
-            ];
-            eventsCoordinates.offset = [
-                Math.abs(eventsCoordinates.move[0] - eventsCoordinates.start[0]),
-                Math.abs(eventsCoordinates.move[1] - eventsCoordinates.start[1]),
+            coords.offset = [
+                Math.abs( coords.move[ 0 ] - coords.start[ 0 ] ),
+                Math.abs( coords.move[ 1 ] - coords.start[ 1 ] )
             ];
         },
 
         end: function() {
+            if ( coords.offset[ 0 ] < 11 && coords.offset[ 1 ] < 11 ) {
+                fireEvent.apply( Tap, arguments );
+            }
+        },
 
-            if (eventsCoordinates.offset[0] <= eventsCoordinates.maxOffset && eventsCoordinates.offset[1] <= eventsCoordinates.maxOffset)
-                Tap.trigger.apply(Tap, arguments);
+        click: function( e ) {
+            if ( !fireEvent( e ) ) {
+                e.preventDefault();
+            }
         }
     };
-}();
 
-Tap.init = function() {
-    Tap.device.eventsMatrix = Tap.device.findEventsMatrix();
+    init = function() {
+        var i = eventsMatrix.length;
 
-    attachEvent(Tap.device.eventsMatrix['events']['start'], Tap.handlers["start"], document.body);
-    attachEvent(Tap.device.eventsMatrix['events']['move'], Tap.handlers["move"], document.body);
-    attachEvent(Tap.device.eventsMatrix['events']['end'], Tap.handlers["end"], document.body);
-};
+        Tap = createEvent( 'tap' );
 
-attachEvent('load', Tap.init);
+        while ( i-- ) {
+            if ( eventsMatrix[ i ].test ) {
+                deviceEvents = eventsMatrix[ i ].events;
+
+                attachDeviceEvent( 'start' );
+                attachDeviceEvent( 'move' );
+                attachDeviceEvent( 'end' );
+
+                return false;
+            }
+        }
+
+        attachEvent( document.body, 'click', handlers[ 'click' ] );
+    };
+
+    attachEvent( window, 'load', init );
+
+})( window );

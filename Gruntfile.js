@@ -3,18 +3,8 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        concat: {
-            options: {
-                banner: '(function () {\n\nvar Tap = {};\n',
-                footer: '\n\n})();'
-            },
-            dist: {
-                src: ['src/device.js', 'src/tap.js'],
-                dest: 'dist/tap.js',
-            },
-        },
         uglify: {
-            my_target: {
+            build: {
                 options: {
                     banner: '/*\n  Handcrafted with love by Ilya Pukhalski (@pukhalski) and Mikhail Larchanka (@ashorror)\n*/\n'
                 },
@@ -25,10 +15,17 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-concat');
+
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
+    grunt.task.registerTask('copy', 'Copy source files to dist directory', function() {
+        grunt.file.copy('src/tap.js', 'dist/tap.js');
+
+        grunt.log.writeln('File src/tap.js copied');
+    });
+
+
     // Default task(s).
-    grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.registerTask('default', ['copy', 'uglify']);
 
 };
