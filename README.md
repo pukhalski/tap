@@ -1,10 +1,10 @@
-# TAP.JS 
+# TAP.JS
 
 `Tap` is a Javascript library for easy unified handling of user interactions such as mouse, touch and pointer events.
 
 * No need to detect what kind of events are supported, `Tap` handles this for you
 * Small distibution size of 1Kb
-* Use fastest event types supported (majority of browsers has ~300ms delay between touch/pointer events and click). Every milisecond does really matter!  
+* Use fastest event types supported (majority of browsers has ~300ms delay between touch/pointer events and click). Every milisecond does really matter!
 
 ## Installation
 
@@ -14,7 +14,7 @@ If you are using Bower:
 bower install tap
 ```
 
-Otherwise just [download the library](http://raw.github.com/pukhalski/tap/dist/tap.min.js).
+Otherwise just [download the library](https://raw.githubusercontent.com/pukhalski/tap/master/dist/tap.min.js).
 
 Include it anywhere in your html file (it does not matter where — in `<head>` or not):
 ```html
@@ -103,7 +103,7 @@ And browsers:
 * Opera Mini
 * Safari 5+
 
-It doesn't mean that all other platforms and browsers (or older versions of them) are not supported. 
+It doesn't mean that all other platforms and browsers (or older versions of them) are not supported.
 
 ## LICENSE
 
