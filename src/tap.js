@@ -1,7 +1,7 @@
 (function( window ) {
 
     var
-        attachEvent, attachDeviceEvent, init, eventsMatrix, handlers, fireEvent, Tap, createEvent, deviceEvents,
+        attachEvent, attachDeviceEvent, init, eventsMatrix, handlers, fireEvent, Tap, createEvent, deviceEvents, getRealEvent,
 
         document = window.document,
         coords = {};
@@ -69,16 +69,20 @@
         return document.createEvent ? e.target.dispatchEvent( Tap ) : e.target.fireEvent( 'on' + e.eventType, e );
     };
 
+    getRealEvent = function( e ) {
+        return e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
+    };
+
     handlers = {
         start: function( e ) {
-            e = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
+            e = getRealEvent( e );
 
             coords.start = [ e.pageX, e.pageY ];
             coords.offset = [ 0, 0 ];
         },
 
         move: function( e ) {
-            e = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
+            e = getRealEvent( e );
 
             coords.move = [ e.pageX, e.pageY ];
 
@@ -88,7 +92,11 @@
             ];
         },
 
-        end: function() {
+        end: function(e) {
+            e = getRealEvent( e );
+
+            e.preventDefault();
+
             if ( coords.offset[ 0 ] < 11 && coords.offset[ 1 ] < 11 ) {
                 fireEvent.apply( Tap, arguments );
             }
