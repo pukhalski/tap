@@ -8,18 +8,18 @@
 
     attachEvent = function( element, eventName, callback ) {
         if ( element.addEventListener ) {
-            element.addEventListener( eventName, callback, false );
+            return element.addEventListener( eventName, callback, false );
 
         } else if ( element.attachEvent ) {
-            element.attachEvent( 'on' + eventName, callback );
+            return element.attachEvent( 'on' + eventName, callback );
 
         } else {
-            element[ 'on' + eventName ] = callback;
+            return element[ 'on' + eventName ] = callback;
         }
     };
 
     attachDeviceEvent = function( eventName ) {
-        attachEvent( document.body, deviceEvents[ eventName ], handlers[ eventName ] );
+        return attachEvent( document.body, deviceEvents[ eventName ], handlers[ eventName ] );
     };
 
     eventsMatrix = [{
@@ -85,26 +85,23 @@
             e = getRealEvent( e );
 
             coords.move = [ e.pageX, e.pageY ];
-
             coords.offset = [
                 Math.abs( coords.move[ 0 ] - coords.start[ 0 ] ),
                 Math.abs( coords.move[ 1 ] - coords.start[ 1 ] )
             ];
         },
 
-        end: function(e) {
+        end: function( e ) {
             e = getRealEvent( e );
 
-            e.preventDefault();
-
-            if ( coords.offset[ 0 ] < 11 && coords.offset[ 1 ] < 11 ) {
-                fireEvent.apply( Tap, arguments );
+            if ( coords.offset[ 0 ] < 11 && coords.offset[ 1 ] < 11 && !fireEvent( e ) ) {
+                e.preventDefault();
             }
         },
 
         click: function( e ) {
             if ( !fireEvent( e ) ) {
-                e.preventDefault();
+                return e.preventDefault();
             }
         }
     };
@@ -126,7 +123,7 @@
             }
         }
 
-        attachEvent( document.body, 'click', handlers[ 'click' ] );
+        return attachEvent( document.body, 'click', handlers[ 'click' ] );
     };
 
     attachEvent( window, 'load', init );
