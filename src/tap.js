@@ -38,8 +38,6 @@ handlers = {
 init = function() {
     var i = Tap.eventMatrix.length;
 
-    Tap.Event = utils.createEvent( 'tap' );
-
     while ( i-- ) {
         if ( Tap.eventMatrix[ i ].test ) {
             deviceEvents = Tap.eventMatrix[ i ].events;

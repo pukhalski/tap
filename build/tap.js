@@ -19,7 +19,9 @@ utils.attachEvent = function( element, eventName, callback ) {
 };
 
 utils.fireEvent = function( e ) {
-    return document.createEvent ? e.target.dispatchEvent( Tap.Event ) : e.target.fireEvent( 'on' + e.eventType, e );
+    var oEvent = utils.createEvent( 'tap' );
+
+    return document.createEvent ? e.target.dispatchEvent( oEvent ) : e.target.fireEvent( 'on' + e.eventType, e );
 };
 
 utils.createEvent = function( name ) {
@@ -109,8 +111,6 @@ handlers = {
 init = function() {
     var i = Tap.eventMatrix.length;
 
-    Tap.Event = utils.createEvent( 'tap' );
-
     while ( i-- ) {
         if ( Tap.eventMatrix[ i ].test ) {
             deviceEvents = Tap.eventMatrix[ i ].events;
@@ -133,6 +133,8 @@ attachDeviceEvent = function( eventName ) {
 utils.attachEvent( window, 'load', init );
 
 Tap.utils = utils;
+
+Tap.handlers = handlers;
 
 window.Tap = Tap;
 
