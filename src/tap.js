@@ -1,6 +1,7 @@
-var
-    attachDeviceEvent, init, handlers, deviceEvents,
+var attachDeviceEvent, init, handlers, deviceEvents,
     coords = {};
+
+Tap.eventName = 'tap';
 
 handlers = {
     start: function( e ) {
