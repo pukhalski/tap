@@ -7,7 +7,7 @@
         "Mikhail Larchanka <larchanka@me.com>"
     ],
     "description": "Library to handle various user interactions (click, touch, pointer) with a single event 'tap'",
-    "main": "dist/tap.js",
+    "main": "build/tap.js",
     "keywords": [
         "touch",
         "events",
