@@ -8,15 +8,14 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             options: {
-                banner: '(function( window ) {\n\nvar Tap = {};\n\n',
+                banner: '(function( window ) {\n\n',
                 footer: '\n})( window );'
             },
             dist: {
                 src: [
                     src_dir + 'utils.js',
                     src_dir + 'events.js',
-                    src_dir + 'tap.js',
-                    src_dir + 'export.js'
+                    src_dir + 'tap.js'
                 ],
                 dest: dest_dir + 'tap.js',
             },

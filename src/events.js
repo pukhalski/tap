@@ -1,4 +1,4 @@
-Tap.eventMatrix = [{
+var eventMatrix = [{
     // Touchable devices
     test: ( 'propertyIsEnumerable' in window || 'hasOwnProperty' in document ) && ( window.propertyIsEnumerable( 'ontouchstart' ) || document.hasOwnProperty( 'ontouchstart') ),
     events: {

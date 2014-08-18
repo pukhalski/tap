@@ -1,7 +1,7 @@
 var attachDeviceEvent, init, handlers, deviceEvents,
+    eventName = 'tap',
+    fingerOffsetMax = 11,
     coords = {};
-
-Tap.eventName = 'tap';
 
 handlers = {
     start: function( e ) {
@@ -24,7 +24,7 @@ handlers = {
     end: function( e ) {
         e = utils.getRealEvent( e );
 
-        if ( coords.offset[ 0 ] < 11 && coords.offset[ 1 ] < 11 && !utils.fireEvent( e ) ) {
+        if ( coords.offset[ 0 ] < fingerOffsetMax && coords.offset[ 1 ] < fingerOffsetMax && !utils.fireEvent( e ) ) {
             e.preventDefault();
         }
     },
@@ -37,11 +37,11 @@ handlers = {
 };
 
 init = function() {
-    var i = Tap.eventMatrix.length;
+    var i = eventMatrix.length;
 
     while ( i-- ) {
-        if ( Tap.eventMatrix[ i ].test ) {
-            deviceEvents = Tap.eventMatrix[ i ].events;
+        if ( eventMatrix[ i ].test ) {
+            deviceEvents = eventMatrix[ i ].events;
 
             attachDeviceEvent( 'start' );
             attachDeviceEvent( 'move' );

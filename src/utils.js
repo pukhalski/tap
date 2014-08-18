@@ -15,7 +15,7 @@ utils.attachEvent = function( element, eventName, callback ) {
 };
 
 utils.fireEvent = function( e ) {
-    var oEvent = utils.createEvent( Tap.eventName );
+    var oEvent = utils.createEvent( eventName );
 
     return document.createEvent ? e.target.dispatchEvent( oEvent ) : e.target.fireEvent( 'on' + e.eventType, e );
 };

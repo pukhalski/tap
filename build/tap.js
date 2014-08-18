@@ -1,7 +1,5 @@
 (function( window ) {
 
-var Tap = {};
-
 var
 	document = window.document,
 	utils = {};
@@ -19,7 +17,7 @@ utils.attachEvent = function( element, eventName, callback ) {
 };
 
 utils.fireEvent = function( e ) {
-    var oEvent = utils.createEvent( Tap.eventName );
+    var oEvent = utils.createEvent( eventName );
 
     return document.createEvent ? e.target.dispatchEvent( oEvent ) : e.target.fireEvent( 'on' + e.eventType, e );
 };
@@ -45,7 +43,7 @@ utils.getRealEvent = function( e ) {
     return e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
 };
 
-Tap.eventMatrix = [{
+var eventMatrix = [{
     // Touchable devices
     test: ( 'propertyIsEnumerable' in window || 'hasOwnProperty' in document ) && ( window.propertyIsEnumerable( 'ontouchstart' ) || document.hasOwnProperty( 'ontouchstart') ),
     events: {
@@ -72,9 +70,9 @@ Tap.eventMatrix = [{
 }];
 
 var attachDeviceEvent, init, handlers, deviceEvents,
+    eventName = 'tap',
+    fingerOffsetMax = 11,
     coords = {};
-
-Tap.eventName = 'tap';
 
 handlers = {
     start: function( e ) {
@@ -97,7 +95,7 @@ handlers = {
     end: function( e ) {
         e = utils.getRealEvent( e );
 
-        if ( coords.offset[ 0 ] < 11 && coords.offset[ 1 ] < 11 && !utils.fireEvent( e ) ) {
+        if ( coords.offset[ 0 ] < fingerOffsetMax && coords.offset[ 1 ] < fingerOffsetMax && !utils.fireEvent( e ) ) {
             e.preventDefault();
         }
     },
@@ -110,11 +108,11 @@ handlers = {
 };
 
 init = function() {
-    var i = Tap.eventMatrix.length;
+    var i = eventMatrix.length;
 
     while ( i-- ) {
-        if ( Tap.eventMatrix[ i ].test ) {
-            deviceEvents = Tap.eventMatrix[ i ].events;
+        if ( eventMatrix[ i ].test ) {
+            deviceEvents = eventMatrix[ i ].events;
 
             attachDeviceEvent( 'start' );
             attachDeviceEvent( 'move' );
@@ -132,11 +130,5 @@ attachDeviceEvent = function( eventName ) {
 };
 
 utils.attachEvent( window, 'load', init );
-
-Tap.utils = utils;
-
-Tap.handlers = handlers;
-
-window.Tap = Tap;
 
 })( window );
