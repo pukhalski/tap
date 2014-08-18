@@ -14,11 +14,11 @@ If you are using Bower:
 bower install tap
 ```
 
-Otherwise just [download the library](https://raw.githubusercontent.com/pukhalski/tap/master/build/tap.min.js).
+Otherwise just [download the library](https://raw.githubusercontent.com/pukhalski/tap/master/dist/tap.min.js).
 
 Include it anywhere in your html file (it does not matter where — in `<head>` or not):
 ```html
-<script src="bower_components/tap/build/tap.min.js"></script>
+<script src="bower_components/tap/dist/tap.min.js"></script>
 ```
 
 ## Usage
