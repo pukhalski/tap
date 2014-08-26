@@ -1,26 +1,32 @@
 module.exports = function(grunt) {
 
-    // Project configuration.
+    var
+        src_dir = 'src/',
+        dest_dir = 'dist/';
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             options: {
-                banner: '(function () {\n\nvar Tap = {};\n',
-                footer: '\n\n})();'
+                banner: '(function( window ) {\n\n',
+                footer: '\n})( window );'
             },
             dist: {
-                src: ['src/device.js', 'src/tap.js'],
-                dest: 'dist/tap.js',
+                src: [
+                    src_dir + 'utils.js',
+                    src_dir + 'events.js',
+                    src_dir + 'tap.js'
+                ],
+                dest: dest_dir + 'tap.js',
             },
         },
         uglify: {
-            my_target: {
+            build: {
                 options: {
                     banner: '/*\n  Handcrafted with love by Ilya Pukhalski (@pukhalski) and Mikhail Larchanka (@ashorror)\n*/\n'
                 },
-                files: {
-                    'dist/tap.min.js': ['dist/tap.js']
-                }
+                src: [ dest_dir + 'tap.js' ],
+                dest: dest_dir + 'tap.min.js'
             }
         }
     });
@@ -28,7 +34,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    // Default task(s).
     grunt.registerTask('default', ['concat', 'uglify']);
 
 };
