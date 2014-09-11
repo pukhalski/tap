@@ -1,42 +1,21 @@
-var
-	document = window.document,
-	utils = {};
+    var utils = {};
 
-utils.attachEvent = function( element, eventName, callback ) {
-    if ( element.addEventListener ) {
+    utils.attachEvent = function( element, eventName, callback ) {
         return element.addEventListener( eventName, callback, false );
+    };
 
-    } else if ( element.attachEvent ) {
-        return element.attachEvent( 'on' + eventName, callback );
+    utils.fireFakeEvent = function( e, eventName ) {
+        return e.target.dispatchEvent( utils.createEvent( eventName ) );
+    };
 
-    } else {
-        return element[ 'on' + eventName ] = callback;
-    }
-};
-
-utils.fireEvent = function( e ) {
-    var oEvent = utils.createEvent( eventName );
-
-    return document.createEvent ? e.target.dispatchEvent( oEvent ) : e.target.fireEvent( 'on' + e.eventType, e );
-};
-
-utils.createEvent = function( name ) {
-    var evnt;
-
-    if ( document.createEvent ) {
-        evnt = document.createEvent( 'HTMLEvents' );
+    utils.createEvent = function( name ) {
+        var evnt = window.document.createEvent( 'HTMLEvents' );
         evnt.initEvent( name, true, true );
+        evnt.eventName = name;
 
-    } else {
-        evnt = document.createEventObject();
-        evnt.eventType = name;
-    }
+        return evnt;
+    };
 
-    evnt.eventName = name;
-
-    return evnt;
-};
-
-utils.getRealEvent = function( e ) {
-    return e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
-};
+    utils.getRealEvent = function( e ) {
+        return e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
+    };

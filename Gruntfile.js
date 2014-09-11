@@ -1,17 +1,18 @@
 module.exports = function(grunt) {
 
-    var
-        src_dir = 'src/',
-        dest_dir = 'dist/';
+    var src_dir = 'src/',
+        dest_dir = 'dist/',
+        banner = '(function( window ) {\n    var Tap = {};\n\n',
+        footer = '\n})( window );';
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             options: {
-                banner: '(function( window ) {\n\n',
-                footer: '\n})( window );'
+                banner: banner,
+                footer: footer
             },
-            dist: {
+            main: {
                 src: [
                     src_dir + 'utils.js',
                     src_dir + 'events.js',
@@ -19,15 +20,24 @@ module.exports = function(grunt) {
                 ],
                 dest: dest_dir + 'tap.js',
             },
+            legacy: {
+                src: [
+                    src_dir + 'utils.legacy.js',
+                    src_dir + 'events.js',
+                    src_dir + 'tap.js'
+                ],
+                dest: dest_dir + 'tap.legacy.js',
+            }
         },
         uglify: {
-            build: {
-                options: {
-                    banner: '/*\n  Handcrafted with love by Ilya Pukhalski (@pukhalski) and Mikhail Larchanka (@ashorror)\n*/\n'
-                },
+            main: {
                 src: [ dest_dir + 'tap.js' ],
                 dest: dest_dir + 'tap.min.js'
-            }
+            },
+            legacy: {
+                src: [ dest_dir + 'tap.legacy.js' ],
+                dest: dest_dir + 'tap.legacy.min.js'
+            },
         }
     });
 

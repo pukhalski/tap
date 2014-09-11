@@ -96,7 +96,7 @@ And browsers:
 * Chrome 31+
 * Firefox for Android
 * Firefox 24+
-* IE 8+
+* IE 9+
 * Mobile Chrome
 * Mobile Safari 5+
 * Opera 12+
