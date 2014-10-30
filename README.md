@@ -92,6 +92,21 @@ Template.MyTemplate.events({
 })
 ```
 
+### With Angular
+
+Just add code below and use 'ng-tap' insted of 'ng-click'. 
+Don't forget add 'ngTap' as dependency
+
+```javascript
+angular.module('ngTap', []).directive('ngTap', function() {
+    return function(scope, element, attrs) {
+        element.bind('tap', function() {
+            scope.$apply(attrs['ngTap'], element);
+        });
+    };
+});
+```
+
 ## Browser Support
 
 Tap was tested on the wide range of devices:
