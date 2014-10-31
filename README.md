@@ -74,6 +74,38 @@ Ext.get('any-element').on('tap', function (e) {
 });
 ```
 
+### With Meteor
+
+First, install Meteor package:
+
+`meteor add jimbog:tap`
+
+Then, the tap event is used just like any other event in Meteor, here is an example for
+an anchor element:
+
+```javascript
+Template.MyTemplate.events({
+    'tap a': function(evt, tmpl){
+        evt.preventDefault();
+        console.log('you tapped the link');
+    }
+})
+```
+
+### With Angular
+
+Just add the code below or `dist/tap.angular.js` to your project, and use `ng-tap` insted of `ng-click`. Do not forget add `ngTap` as a dependency.
+
+```javascript
+angular.module('ngTap', []).directive('ngTap', function() {
+    return function(scope, element, attrs) {
+        element.bind('tap', function() {
+            scope.$apply(attrs['ngTap'], element);
+        });
+    };
+});
+```
+
 ## Browser Support
 
 Tap was tested on the wide range of devices:
