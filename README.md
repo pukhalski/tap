@@ -95,7 +95,9 @@ Template.MyTemplate.events({
 ### With Angular
 
 Just add code below and use 'ng-tap' insted of 'ng-click'. 
-Don't forget add 'ngTap' as dependency
+Don't forget add 'ngTap' as dependency.
+
+It located at root [tap.angular.js](https://github.com/wegorich/tap/blob/patch-1/tap.angular.js).
 
 ```javascript
 angular.module('ngTap', []).directive('ngTap', function() {
