@@ -3,7 +3,7 @@
 `Tap` is a Javascript library for easy unified handling of user interactions such as mouse, touch and pointer events.
 
 * No need to detect what kind of events are supported, `Tap` handles this for you
-* Small distibution size of 1Kb
+* Small distribution size of 1Kb
 * Use fastest event types supported (majority of browsers has ~300ms delay between touch/pointer events and click). Every milisecond does really matter!
 
 ## Installation
