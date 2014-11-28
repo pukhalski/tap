@@ -1,32 +1,20 @@
 module.exports = function(grunt) {
 
     var src_dir = 'src/',
-        dest_dir = 'dist/',
-        banner = '(function( window ) {\n    var Tap = {};\n\n',
-        footer = '\n})( window );';
+        dest_dir = 'dist/';
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        concat: {
+        browserify: {
             options: {
-                banner: banner,
-                footer: footer
+                browserifyOptions: {
+                    standalone: 'Tap'
+                }
             },
-            main: {
-                src: [
-                    src_dir + 'utils.js',
-                    src_dir + 'events.js',
-                    src_dir + 'tap.js'
-                ],
-                dest: dest_dir + 'tap.js',
-            },
-            legacy: {
-                src: [
-                    src_dir + 'utils.legacy.js',
-                    src_dir + 'events.js',
-                    src_dir + 'tap.js'
-                ],
-                dest: dest_dir + 'tap.legacy.js',
+            dist: {
+                files: {
+                  'dist/tap.js': ['src/tap.js'],
+                },
             }
         },
         uglify: {
@@ -41,9 +29,9 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.registerTask('default', ['browserify', 'uglify']);
 
 };
