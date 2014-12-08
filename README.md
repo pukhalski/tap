@@ -4,7 +4,7 @@
 
 * No need to detect what kind of events are supported, `Tap` handles this for you
 * Small distribution size of 1Kb
-* Use fastest event types supported (majority of browsers has ~300ms delay between touch/pointer events and click). Every milisecond does really matter!
+* Use fastest event types supported (majority of browsers has ~300ms delay between touch/pointer events and click). Every millisecond does really matter!
 
 ## Installation
 
