@@ -57,9 +57,7 @@
     };
 
     init = function() {
-        var i = eventMatrix.length;
-
-        while ( i-- ) {
+        for ( var i = 0, l = eventMatrix.length; i < l; i++ ) {
             if ( eventMatrix[ i ].test ) {
                 deviceEvents = eventMatrix[ i ].events;
 
