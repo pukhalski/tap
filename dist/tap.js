@@ -71,7 +71,7 @@
 
         move: function( e ) {
             if (!coords['start'] && !coords['move']) return false;
-            
+
             e = utils.getRealEvent( e );
 
             coords.move = [ e.pageX, e.pageY ];
@@ -85,6 +85,15 @@
             e = utils.getRealEvent( e );
 
             if ( coords.offset[ 0 ] < Tap.options.fingerMaxOffset && coords.offset[ 1 ] < Tap.options.fingerMaxOffset && !utils.fireFakeEvent( e, Tap.options.eventName ) ) {
+                if ( window.navigator.msPointerEnabled || window.navigator.pointerEnabled ) {
+                    var preventDefault = function( clickEvent ) {
+                        clickEvent.preventDefault();
+                        e.target.removeEventListener( 'click', preventDefault );
+                    };
+
+                    e.target.addEventListener( 'click', preventDefault, false );
+                }
+
                 e.preventDefault();
             }
 
