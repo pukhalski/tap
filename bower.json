@@ -1,7 +1,6 @@
 {
     "name": "tap",
-    "version": "1.0.2",
-    "homepage": "http://pukhalski.github.io/tap.js/",
+    "version": "1.0.3",
     "authors": [
         "Ilya Pukhalski <swedenxpower@gmail.com>",
         "Mikhail Larchanka <larchanka@me.com>"
@@ -17,7 +16,15 @@
         "interactions",
         "tap"
     ],
-    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pukhalski/tap.git"
+    },
+    "readme": "README.md",
+    "licenses": [{
+        "type": "MIT",
+        "url": "http://opensource.org/licenses/MIT"
+    }],
     "ignore": [
         "node_modules",
         "bower_components",
