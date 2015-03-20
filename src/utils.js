@@ -17,5 +17,10 @@
     };
 
     utils.getRealEvent = function( e ) {
-        return e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ? e.originalEvent.touches[ 0 ] : e;
+        if (e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length) {
+            return e.originalEvent.touches[ 0 ];
+        } else if (e.touches && e.touches.length) {
+            return e.touches[ 0 ];
+        }
+        return e;
     };
