@@ -128,7 +128,8 @@
         return utils.attachEvent( document.body, 'click', handlers[ 'click' ] );
     };
 
-    utils.attachEvent( window, 'load', init );
+    if ('addEventListener' in window) // IE8 not supported
+        utils.attachEvent( window, 'load', init );
 
     window.Tap = Tap;
 

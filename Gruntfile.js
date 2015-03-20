@@ -33,11 +33,7 @@ module.exports = function(grunt) {
             main: {
                 src: [ dest_dir + 'tap.js' ],
                 dest: dest_dir + 'tap.min.js'
-            },
-            legacy: {
-                src: [ dest_dir + 'tap.legacy.js' ],
-                dest: dest_dir + 'tap.legacy.min.js'
-            },
+            }
         }
     });
 
