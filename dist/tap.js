@@ -4,19 +4,25 @@
     var utils = {};
 
     utils.attachEvent = function( element, eventName, callback ) {
-        return element.addEventListener( eventName, callback, false );
+        if ( 'addEventListener' in window ) {
+            return element.addEventListener( eventName, callback, false );
+        }
     };
 
     utils.fireFakeEvent = function( e, eventName ) {
-        return e.target.dispatchEvent( utils.createEvent( eventName ) );
+        if ( document.createEvent ) {
+            return e.target.dispatchEvent( utils.createEvent( eventName ) );
+        }
     };
 
     utils.createEvent = function( name ) {
-        var evnt = window.document.createEvent( 'HTMLEvents' );
-        evnt.initEvent( name, true, true );
-        evnt.eventName = name;
+        if ( document.createEvent ) {
+            var evnt = window.document.createEvent( 'HTMLEvents' );
+            evnt.initEvent( name, true, true );
+            evnt.eventName = name;
 
-        return evnt;
+            return evnt;
+        }
     };
 
     utils.getRealEvent = function( e ) {
@@ -128,8 +134,7 @@
         return utils.attachEvent( document.body, 'click', handlers[ 'click' ] );
     };
 
-    if ('addEventListener' in window) // IE8 not supported
-        utils.attachEvent( window, 'load', init );
+    utils.attachEvent( window, 'load', init );
 
     window.Tap = Tap;
 
