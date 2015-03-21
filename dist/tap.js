@@ -26,11 +26,12 @@
     };
 
     utils.getRealEvent = function( e ) {
-        if (e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length) {
+        if ( e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ) {
             return e.originalEvent.touches[ 0 ];
-        } else if (e.touches && e.touches.length) {
+        } else if ( e.touches && e.touches.length ) {
             return e.touches[ 0 ];
         }
+
         return e;
     };
 
@@ -81,7 +82,9 @@
         },
 
         move: function( e ) {
-            if (!coords['start'] && !coords['move']) return false;
+            if ( !coords[ 'start' ] && !coords[ 'move' ] ) {
+                return false;
+            }
 
             e = utils.getRealEvent( e );
 
@@ -119,7 +122,9 @@
     };
 
     init = function() {
-        for ( var i = 0, l = eventMatrix.length; i < l; i++ ) {
+        var i = 0;
+
+        for ( ; i < eventMatrix.length; i++ ) {
             if ( eventMatrix[ i ].test ) {
                 deviceEvents = eventMatrix[ i ].events;
 

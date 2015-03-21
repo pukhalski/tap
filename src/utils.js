@@ -23,10 +23,11 @@
     };
 
     utils.getRealEvent = function( e ) {
-        if (e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length) {
+        if ( e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ) {
             return e.originalEvent.touches[ 0 ];
-        } else if (e.touches && e.touches.length) {
+        } else if ( e.touches && e.touches.length ) {
             return e.touches[ 0 ];
         }
+
         return e;
     };

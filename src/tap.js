@@ -19,7 +19,9 @@
         },
 
         move: function( e ) {
-            if (!coords['start'] && !coords['move']) return false;
+            if ( !coords[ 'start' ] && !coords[ 'move' ] ) {
+                return false;
+            }
 
             e = utils.getRealEvent( e );
 
@@ -57,7 +59,9 @@
     };
 
     init = function() {
-        for ( var i = 0, l = eventMatrix.length; i < l; i++ ) {
+        var i = 0;
+
+        for ( ; i < eventMatrix.length; i++ ) {
             if ( eventMatrix[ i ].test ) {
                 deviceEvents = eventMatrix[ i ].events;
 
