@@ -4,27 +4,34 @@
     var utils = {};
 
     utils.attachEvent = function( element, eventName, callback ) {
-        return element.addEventListener( eventName, callback, false );
+        if ( 'addEventListener' in window ) {
+            return element.addEventListener( eventName, callback, false );
+        }
     };
 
     utils.fireFakeEvent = function( e, eventName ) {
-        return e.target.dispatchEvent( utils.createEvent( eventName ) );
+        if ( document.createEvent ) {
+            return e.target.dispatchEvent( utils.createEvent( eventName ) );
+        }
     };
 
     utils.createEvent = function( name ) {
-        var evnt = window.document.createEvent( 'HTMLEvents' );
-        evnt.initEvent( name, true, true );
-        evnt.eventName = name;
+        if ( document.createEvent ) {
+            var evnt = window.document.createEvent( 'HTMLEvents' );
+            evnt.initEvent( name, true, true );
+            evnt.eventName = name;
 
-        return evnt;
+            return evnt;
+        }
     };
 
     utils.getRealEvent = function( e ) {
-        if (e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length) {
+        if ( e.originalEvent && e.originalEvent.touches && e.originalEvent.touches.length ) {
             return e.originalEvent.touches[ 0 ];
-        } else if (e.touches && e.touches.length) {
+        } else if ( e.touches && e.touches.length ) {
             return e.touches[ 0 ];
         }
+
         return e;
     };
 
@@ -75,7 +82,9 @@
         },
 
         move: function( e ) {
-            if (!coords['start'] && !coords['move']) return false;
+            if ( !coords[ 'start' ] && !coords[ 'move' ] ) {
+                return false;
+            }
 
             e = utils.getRealEvent( e );
 
@@ -90,6 +99,8 @@
             e = utils.getRealEvent( e );
 
             if ( coords.offset[ 0 ] < Tap.options.fingerMaxOffset && coords.offset[ 1 ] < Tap.options.fingerMaxOffset && !utils.fireFakeEvent( e, Tap.options.eventName ) ) {
+                // Windows Phone 8.0 trigger `click` after `pointerup` firing
+                // #16 https://github.com/pukhalski/tap/issues/16
                 if ( window.navigator.msPointerEnabled || window.navigator.pointerEnabled ) {
                     var preventDefault = function( clickEvent ) {
                         clickEvent.preventDefault();
@@ -113,7 +124,9 @@
     };
 
     init = function() {
-        for ( var i = 0, l = eventMatrix.length; i < l; i++ ) {
+        var i = 0;
+
+        for ( ; i < eventMatrix.length; i++ ) {
             if ( eventMatrix[ i ].test ) {
                 deviceEvents = eventMatrix[ i ].events;
 
@@ -128,8 +141,7 @@
         return utils.attachEvent( document.body, 'click', handlers[ 'click' ] );
     };
 
-    if ('addEventListener' in window) // IE8 not supported
-        utils.attachEvent( window, 'load', init );
+    utils.attachEvent( window, 'load', init );
 
     window.Tap = Tap;
 
