@@ -7,7 +7,7 @@
         coords = {};
 
     attachDeviceEvent = function( eventName ) {
-        return utils.attachEvent( document.body, deviceEvents[ eventName ], handlers[ eventName ] );
+        return utils.attachEvent( document.documentElement, deviceEvents[ eventName ], handlers[ eventName ] );
     };
 
     handlers = {
@@ -75,7 +75,7 @@
             }
         }
 
-        return utils.attachEvent( document.body, 'click', handlers[ 'click' ] );
+        return utils.attachEvent( document.documentElement, 'click', handlers[ 'click' ] );
     };
 
     utils.attachEvent( window, 'load', init );
