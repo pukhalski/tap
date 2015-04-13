@@ -19,14 +19,6 @@ module.exports = function(grunt) {
                     src_dir + 'tap.js'
                 ],
                 dest: dest_dir + 'tap.js',
-            },
-            legacy: {
-                src: [
-                    src_dir + 'utils.legacy.js',
-                    src_dir + 'events.js',
-                    src_dir + 'tap.js'
-                ],
-                dest: dest_dir + 'tap.legacy.js',
             }
         },
         uglify: {
