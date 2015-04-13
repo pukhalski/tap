@@ -1,6 +1,6 @@
 {
-  "name": "tap.js",
-  "version": "1.0.1",
+  "name": "tap",
+  "version": "1.0.5",
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-concat": "^0.4.0",
