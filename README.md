@@ -106,6 +106,14 @@ angular.module('ngTap', []).directive('ngTap', function() {
 });
 ```
 
+### With Knockout
+
+`tap` is not in the list of known events for Knockout, so use custom event binding to handle `tap` event:
+
+```html
+<button data-bind="event: {tap: onAddToCart}">Add to cart</button>
+```
+
 ## Browser Support
 
 Tap was tested on the wide range of devices:
