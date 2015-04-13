@@ -80,4 +80,11 @@
 
     utils.attachEvent( window, 'load', init );
 
-    window.Tap = Tap;
+    if (typeof define === 'function' && define.amd) {
+        define(function () {
+            init();
+            return Tap;
+        });
+    } else {
+        window.Tap = Tap;
+    }
