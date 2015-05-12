@@ -1,9 +1,33 @@
 {
-  "name": "tap",
+  "name": "tapjs",
   "version": "1.0.5",
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-concat": "^0.4.0",
     "grunt-contrib-uglify": "^0.4.0"
-  }
+  },
+  "description": "`Tap` is a Javascript library for easy unified handling of user interactions such as mouse, touch and pointer events.",
+  "main": "dist/tap.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pukhalski/tap.git"
+  },
+  "keywords": [
+    "tap",
+    "touch",
+    "delay",
+    "fast",
+    "click",
+    "events",
+    "pointer",
+    "events",
+    "mobile"
+  ],
+  "author": "Ilya Pukhalski <ilya@pukhalski.com> (http://pukhalski.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pukhalski/tap/issues"
+  },
+  "homepage": "https://github.com/pukhalski/tap"
 }

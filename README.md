@@ -14,6 +14,12 @@ If you are using Bower:
 bower install tap
 ```
 
+For npm users:
+
+```
+npm install tapjs
+```
+
 Otherwise just [download the library](https://raw.githubusercontent.com/pukhalski/tap/master/dist/tap.min.js).
 
 Include it anywhere in your html file (it does not matter where — in `<head>` or not):
