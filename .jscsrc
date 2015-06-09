@@ -19,6 +19,8 @@
   "disallowSpacesInFunctionExpression": {
     "beforeOpeningRoundBrace": true
   },
+  "disallowSpacesInsideBrackets": true,
+  "disallowSpacesInsideParentheses": true,
   "disallowTrailingComma": true,
   "disallowTrailingWhitespace": true,
 
@@ -104,7 +106,13 @@
     "!=="
   ],
   "requireSpaceBeforeBlockStatements": 1,
-  "requireSpaceBeforeKeywords": true,
+  "requireSpaceBeforeKeywords": [
+    "do",
+    "else",
+    "while",
+    "catch",
+    "catch"
+  ],
   "requireSpaceBeforeObjectValues": true,
   "requireSpaceBetweenArguments": true,
   "requireSpacesInConditionalExpression": true,
@@ -118,12 +126,7 @@
   "requireSpacesInFunction": {
     "beforeOpeningCurlyBrace": true
   },
-  "requireSpacesInsideArrayBrackets": {
-    "allExcept": ["{", "}"]
-  },
-  "requireSpacesInsideBrackets": true,
   "requireSpacesInsideObjectBrackets": "all",
-  "requireSpacesInsideParentheses": "all",
   "safeContextKeyword": ["that"],
   "validateParameterSeparator": ", ",
   "validateQuoteMarks": "'",
