@@ -4,11 +4,15 @@
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-uglify": "^0.4.0"
+    "grunt-contrib-uglify": "^0.4.0",
+    "jscs": "^1.13.1"
   },
   "description": "`Tap` is a Javascript library for easy unified handling of user interactions such as mouse, touch and pointer events.",
   "main": "dist/tap.js",
   "dependencies": {},
+  "scripts": {
+    "test": "./node_modules/.bin/jscs src/*"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pukhalski/tap.git"
