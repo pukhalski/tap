@@ -26,12 +26,38 @@ module.exports = function(grunt) {
                 src: [ dest_dir + 'tap.js' ],
                 dest: dest_dir + 'tap.min.js'
             }
+        },
+        connect: {
+          app:{
+            options: {
+              port: 9001,
+              base: dest_dir,
+              hostname: 'localhost',
+              livereload: 35729
+            }
+          }
+        },
+        watch: {
+          scripts: {
+            files: [
+                src_dir + '**/*.js',
+                dest_dir + '**/*.html'
+            ],
+            tasks: ['concat', 'uglify'],
+            options: {
+              spawn: false,
+              livereload: true
+            },
+          },
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.registerTask('serve', ['concat', 'uglify', 'connect', 'watch']);
 
 };
