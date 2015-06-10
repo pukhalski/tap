@@ -2,9 +2,11 @@
   "name": "tapjs",
   "version": "1.0.6",
   "devDependencies": {
-    "grunt": "latest",
+    "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-uglify": "^0.4.0"
+    "grunt-contrib-connect": "^0.10.1",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1"
   },
   "description": "`Tap` is a Javascript library for easy unified handling of user interactions such as mouse, touch and pointer events.",
   "main": "dist/tap.js",
