@@ -1,6 +1,6 @@
 {
   "name": "tapjs",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-concat": "^0.4.0",

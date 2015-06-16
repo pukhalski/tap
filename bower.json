@@ -1,8 +1,9 @@
 {
     "name": "tap",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "authors": [
         "Ilya Pukhalski <ilya@pukhalski.com>",
+        "Eugene Zhlobo <ezhlobo@gmail.com>",
         "Mikhail Larchanka <larchanka@me.com>"
     ],
     "description": "Library to handle various user interactions (click, touch, pointer) with a single event 'tap'",
