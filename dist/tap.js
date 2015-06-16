@@ -120,6 +120,14 @@
             if ( !utils.fireFakeEvent( e, Tap.options.eventName ) ) {
                 return e.preventDefault();
             }
+        },
+
+        emulatedTap: function( e ) {
+            if ( coords.offset ) {
+                utils.fireFakeEvent( e, Tap.options.eventName );
+            }
+
+            return e.preventDefault();
         }
     };
 
@@ -133,6 +141,7 @@
                 attachDeviceEvent( 'start' );
                 attachDeviceEvent( 'move' );
                 attachDeviceEvent( 'end' );
+                utils.attachEvent( document.documentElement, 'click', handlers[ 'emulatedTap' ] );
 
                 return false;
             }
