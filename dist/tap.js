@@ -11,23 +11,16 @@
 
     utils.fireFakeEvent = function(e, eventName) {
         if (document.createEvent) {
-            return e.target.dispatchEvent(utils.createEvent(e, eventName));
+            return e.target.dispatchEvent(utils.createEvent(eventName));
         }
     };
 
-    utils.createEvent = function(e, name) {
+    utils.createEvent = function(name) {
         if (document.createEvent) {
             var evnt = window.document.createEvent('HTMLEvents');
 
             evnt.initEvent(name, true, true);
             evnt.eventName = name;
-
-            if (e.clientX || e.pageX) {
-              evnt.clientX = e.clientX;
-              evnt.clientY = e.clientY;
-              evnt.pageX = e.pageX;
-              evnt.pageY = e.pageY;
-            }
 
             return evnt;
         }
