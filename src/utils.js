@@ -13,21 +13,21 @@
     };
 
     utils.createEvent = function(e, name) {
-      if (document.createEvent) {
-        var evnt = window.document.createEvent('HTMLEvents');
+        if (document.createEvent) {
+            var evnt = window.document.createEvent('HTMLEvents');
 
-        evnt.initEvent(name, true, true);
-        evnt.eventName = name;
+            evnt.initEvent(name, true, true);
+            evnt.eventName = name;
 
-        if (e.clientX || e.pageX) {
-          evnt.clientX = e.clientX;
-          evnt.clientY = e.clientY;
-          evnt.pageX = e.pageX;
-          evnt.pageY = e.pageY;
+            if (e.clientX || e.pageX) {
+                evnt.clientX = e.clientX;
+                evnt.clientY = e.clientY;
+                evnt.pageX = e.pageX;
+                evnt.pageY = e.pageY;
+            }
+
+            return evnt;
         }
-
-        return evnt;
-      }
     };
 
     utils.getRealEvent = function(e) {
