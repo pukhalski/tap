@@ -154,3 +154,7 @@ It doesn't mean that all other platforms and browsers (or older versions of them
 ## LICENSE
 
 Tap is distributed under MIT license. Enjoy!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pukhalski/tap/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
