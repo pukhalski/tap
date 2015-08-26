@@ -1,9 +1,9 @@
 {
     "name": "tap",
-    "version": "1.0.0",
-    "homepage": "http://pukhalski.github.io/tap.js/",
+    "version": "1.0.7",
     "authors": [
-        "Ilya Pukhalski <swedenxpower@gmail.com>",
+        "Ilya Pukhalski <ilya@pukhalski.com>",
+        "Eugene Zhlobo <ezhlobo@gmail.com>",
         "Mikhail Larchanka <larchanka@me.com>"
     ],
     "description": "Library to handle various user interactions (click, touch, pointer) with a single event 'tap'",
@@ -17,9 +17,16 @@
         "interactions",
         "tap"
     ],
-    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pukhalski/tap.git"
+    },
+    "readme": "README.md",
+    "licenses": [{
+        "type": "MIT",
+        "url": "http://opensource.org/licenses/MIT"
+    }],
     "ignore": [
-        "**/.*",
         "node_modules",
         "bower_components",
         "test",

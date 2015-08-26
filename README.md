@@ -3,8 +3,8 @@
 `Tap` is a Javascript library for easy unified handling of user interactions such as mouse, touch and pointer events.
 
 * No need to detect what kind of events are supported, `Tap` handles this for you
-* Small distibution size of 1Kb
-* Use fastest event types supported (majority of browsers has ~300ms delay between touch/pointer events and click). Every milisecond does really matter!
+* Small distribution size of 1Kb
+* Use fastest event types supported (majority of browsers has ~300ms delay between touch/pointer events and click). Every millisecond does really matter!
 
 ## Installation
 
@@ -12,6 +12,12 @@ If you are using Bower:
 
 ```
 bower install tap
+```
+
+For npm users:
+
+```
+npm install tapjs
 ```
 
 Otherwise just [download the library](https://raw.githubusercontent.com/pukhalski/tap/master/dist/tap.min.js).
@@ -72,6 +78,46 @@ YUI().use('event', 'node', function (Y) {
 Ext.get('any-element').on('tap', function (e) {
     // All the magic happens here
 });
+```
+
+### With Meteor
+
+First, install Meteor package:
+
+`meteor add jimbog:tap`
+
+Then, the tap event is used just like any other event in Meteor, here is an example for
+an anchor element:
+
+```javascript
+Template.MyTemplate.events({
+    'tap a': function(evt, tmpl){
+        evt.preventDefault();
+        console.log('you tapped the link');
+    }
+})
+```
+
+### With Angular
+
+Just add the code below or `dist/tap.angular.js` to your project, and use `ng-tap` insted of `ng-click`. Do not forget add `ngTap` as a dependency.
+
+```javascript
+angular.module('ngTap', []).directive('ngTap', function() {
+    return function(scope, element, attrs) {
+        element.bind('tap', function() {
+            scope.$apply(attrs['ngTap'], element);
+        });
+    };
+});
+```
+
+### With Knockout
+
+`tap` is not in the list of known events for Knockout, so use custom event binding to handle `tap` event:
+
+```html
+<button data-bind="event: {tap: onAddToCart}">Add to cart</button>
 ```
 
 ## Browser Support
