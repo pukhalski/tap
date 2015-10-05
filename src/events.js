@@ -1,6 +1,6 @@
     var eventMatrix = [{
         // Touchable devices
-        test: ('propertyIsEnumerable' in window || 'hasOwnProperty' in document) && (window.propertyIsEnumerable('ontouchstart') || document.hasOwnProperty('ontouchstart')),
+        test: ('ontouchstart' in window || 'ontouchstart' in document),
         events: {
             start: 'touchstart',
             move: 'touchmove',
