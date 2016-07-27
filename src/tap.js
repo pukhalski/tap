@@ -35,7 +35,7 @@
         end: function(e) {
             e = utils.getRealEvent(e);
 
-            if (coords.offset[0] < Tap.options.fingerMaxOffset && coords.offset[1] < Tap.options.fingerMaxOffset && !utils.fireFakeEvent(e, Tap.options.eventName)) {
+            if (coords.offset && e.preventDefault && coords.offset[0] < Tap.options.fingerMaxOffset && coords.offset[1] < Tap.options.fingerMaxOffset && !utils.fireFakeEvent(e, Tap.options.eventName)) {
                 // Windows Phone 8.0 trigger `click` after `pointerup` firing
                 // #16 https://github.com/pukhalski/tap/issues/16
                 if (window.navigator.msPointerEnabled || window.navigator.pointerEnabled) {
