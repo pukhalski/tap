@@ -1,4 +1,4 @@
-# TAP.JS
+# TAP.JS [DEPRECATED]
 
 `Tap` is a Javascript library for easy unified handling of user interactions such as mouse, touch and pointer events.
 
