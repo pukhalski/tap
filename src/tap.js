@@ -63,6 +63,9 @@
     init = function() {
         var i = 0;
 
+        if(utils.isPc()) {
+            return utils.attachEvent(document.documentElement, 'click', handlers.click);
+        }
         for (; i < eventMatrix.length; i++) {
             if (eventMatrix[i].test) {
                 deviceEvents = eventMatrix[i].events;
@@ -75,7 +78,6 @@
             }
         }
 
-        return utils.attachEvent(document.documentElement, 'click', handlers.click);
     };
 
     utils.attachEvent(window, 'load', init);

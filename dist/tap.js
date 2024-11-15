@@ -36,6 +36,19 @@
         return e;
     };
 
+    utils.isPc = function () {
+        var uaInfo = navigator.userAgent;
+        var agents = ["Android", "iPhone", "Windows Phone", "iPad", "iPod"];
+        var flag = true;
+        for (var i = 0; i < agents.length; i++) {
+          if (uaInfo.indexOf(agents[i]) > 0) {
+            flag = false;
+            break;
+          }
+        }
+        return flag;
+    };
+
     var eventMatrix = [{
         // Touchable devices
         test: ('propertyIsEnumerable' in window || 'hasOwnProperty' in document) && (window.propertyIsEnumerable('ontouchstart') || document.hasOwnProperty('ontouchstart') || window.hasOwnProperty('ontouchstart')),
@@ -127,6 +140,9 @@
     init = function() {
         var i = 0;
 
+        if(utils.isPc()) {
+            return utils.attachEvent(document.documentElement, 'click', handlers.click);
+        }
         for (; i < eventMatrix.length; i++) {
             if (eventMatrix[i].test) {
                 deviceEvents = eventMatrix[i].events;
@@ -139,7 +155,6 @@
             }
         }
 
-        return utils.attachEvent(document.documentElement, 'click', handlers.click);
     };
 
     utils.attachEvent(window, 'load', init);

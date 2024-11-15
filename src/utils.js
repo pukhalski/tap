@@ -32,3 +32,16 @@
 
         return e;
     };
+
+    utils.isPc = function () {
+        var uaInfo = navigator.userAgent;
+        var agents = ["Android", "iPhone", "Windows Phone", "iPad", "iPod"];
+        var flag = true;
+        for (var i = 0; i < agents.length; i++) {
+          if (uaInfo.indexOf(agents[i]) > 0) {
+            flag = false;
+            break;
+          }
+        }
+        return flag;
+    };
